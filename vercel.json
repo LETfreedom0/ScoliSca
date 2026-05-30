@@ -1,0 +1,4 @@
+{
+  "buildCommand": "cd scolisca-api && npm run build",
+  "outputDirectory": "scolisca-api/.next"
+}
