@@ -1,5 +1,15 @@
 {
-  "rootDirectory": "scolisca-api",
-  "outputDirectory": ".next",
-  "buildCommand": "npm run build"
+  "version": 2,
+  "builds": [
+    {
+      "src": "scolisca-api/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "scolisca-api/$1"
+    }
+  ]
 }
