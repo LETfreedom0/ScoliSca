@@ -1,0 +1,223 @@
+.container {
+  min-height: 100vh;
+  background: #F5F7FA;
+}
+
+.content {
+  padding: 32rpx 40rpx 120rpx;
+}
+
+.record-count {
+  font-size: 24rpx;
+  color: #64748B;
+  margin-bottom: 28rpx;
+}
+
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.swipe-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32rpx;
+}
+
+.del-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 160rpx;
+  background: #DC2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.del-btn text {
+  font-size: 32rpx;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.record-item {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 36rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+  border: 2rpx solid #F1F5F9;
+  display: flex;
+  align-items: flex-start;
+  gap: 32rpx;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.record-icon-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.record-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.record-icon.xray {
+  background: #E0E7FF;
+}
+
+.record-icon.photo {
+  background: #F0FDFA;
+}
+
+.record-icon svg {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.record-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.left-badges {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.type-badge.teal {
+  background: #CCFBF1;
+  color: #115E59;
+}
+
+.type-badge.blue {
+  background: #E0E7FF;
+  color: #4338CA;
+}
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.risk-badge.low {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.risk-badge.medium {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.risk-badge.high {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.risk-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+
+.risk-badge.low .risk-dot {
+  background: #22C55E;
+}
+
+.risk-badge.medium .risk-dot {
+  background: #F59E0B;
+}
+
+.risk-badge.high .risk-dot {
+  background: #EF4444;
+}
+
+.record-result {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #64748B;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.record-result.normal {
+  color: #059669;
+}
+
+.record-date {
+  font-size: 26rpx;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.record-arrow {
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+
+.record-arrow svg {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.swipe-hint {
+  font-size: 24rpx;
+  color: #94A3B8;
+  text-align: center;
+  margin-top: 32rpx;
+}
+
+.clear-all {
+  text-align: center;
+  margin-top: 64rpx;
+}
+
+.clear-all text {
+  font-size: 28rpx;
+  color: #DC2626;
+  font-weight: 600;
+}

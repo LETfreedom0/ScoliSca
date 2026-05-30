@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M15 6l-6 6 6 6" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </view>
+    <text class="page-title">专业X光片分析</text>
+  </view>
+
+  <view class="upload-area" bindtap="chooseImage">
+    <view class="upload-icon xray-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="2" width="16" height="20" rx="3" stroke="#4F46E5" stroke-width="1.8" fill="none"/>
+        <path d="M7 7h10M7 11h8M7 15h6" stroke="#4F46E5" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </view>
+    <text class="upload-title">点击上传脊柱X光片</text>
+    <text class="upload-desc">请上传清晰的脊柱全长正位X光片</text>
+  </view>
+
+  <view class="example-section">
+    <text class="section-label">上传示例</text>
+    <view class="xray-example-image">
+      <text class="image-label">脊柱全长正位X光片示意</text>
+    </view>
+  </view>
+
+  <view class="action-button">
+    <view class="primary-btn btn-full" bindtap="chooseFromAlbum">从相册选择</view>
+  </view>
+
+  <view class="tips-card">
+    <text class="tip-item">✓ 图像清晰，可辨脊柱结构</text>
+    <text class="tip-item">✓ 脊柱全长完整可见</text>
+    <text class="tip-item">✓ 正位拍摄，无倾斜旋转</text>
+  </view>
+</view>

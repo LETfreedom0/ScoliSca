@@ -1,0 +1,134 @@
+<view class="container">
+  <view class="page-header">
+    <text class="header-title">检测报告</text>
+    <view class="header-right">
+      <text class="report-date">{{timestamp}}</text>
+      <view class="share-btn">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="18" cy="5" r="3" stroke="#475569" stroke-width="1.8"/>
+          <path d="M11 21H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v3" stroke="#475569" stroke-width="1.8"/>
+        </svg>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="result-card" wx:if="{{success && result}}">
+      <view class="card-accent"></view>
+      <view class="risk-ring">
+        <view class="ring-bg"></view>
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#F1F5F9" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="{{riskColor}}" stroke-width="10" stroke-dasharray="{{result.riskLevel === 'low' ? '88 220' : result.riskLevel === 'medium' ? '110 220' : '154 220'}}" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+        </svg>
+        <view class="ring-center">
+          <text class="risk-level">{{result.riskLevel === 'low' ? '低' : result.riskLevel === 'medium' ? '中' : '高'}}</text>
+          <text class="risk-label">风险</text>
+        </view>
+      </view>
+      <text class="result-title">筛查结果：{{riskText}}</text>
+      <text class="result-desc">{{result.summary || '分析完成'}}</text>
+    </view>
+
+    <view class="result-card" wx:if="{{!success}}">
+      <view class="card-accent error"></view>
+      <view class="risk-ring error">
+        <view class="ring-bg error"></view>
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#EF4444" stroke-width="10" stroke-dasharray="220 220" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+        </svg>
+        <view class="ring-center">
+          <text class="risk-level">!</text>
+          <text class="risk-label">错误</text>
+        </view>
+      </view>
+      <text class="result-title">分析失败</text>
+      <text class="result-desc">{{error || '未知错误'}}</text>
+    </view>
+
+    <view class="analysis-section" wx:if="{{success && result}}">
+      <text class="section-title">分析图片</text>
+      <view class="annotation-image">
+        <image src="{{imagePath}}" mode="aspectFit" wx:if="{{imagePath}}"/>
+        <view wx:else class="image-placeholder">
+          <text>暂无图片</text>
+        </view>
+      </view>
+      <text class="image-hint">AI 脊柱侧弯分析图</text>
+    </view>
+
+    <view class="detail-section" wx:if="{{success && result}}">
+      <text class="section-title">分析详情</text>
+      <view class="info-cards">
+        <view class="info-card" wx:if="{{result.shoulderBalance}}">
+          <view class="info-left">
+            <text class="info-label">肩部平衡</text>
+            <text class="info-hint">双肩高度差异</text>
+          </view>
+          <text class="info-value {{result.shoulderBalance.includes('高') || result.shoulderBalance.includes('偏差') ? 'warning' : 'safe'}}">{{result.shoulderBalance}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.pelvicTilt}}">
+          <view class="info-left">
+            <text class="info-label">骨盆水平</text>
+            <text class="info-hint">骨盆两侧高度</text>
+          </view>
+          <text class="info-value {{result.pelvicTilt.includes('倾斜') || result.pelvicTilt.includes('偏差') ? 'warning' : 'safe'}}">{{result.pelvicTilt}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.spineContour}}">
+          <view class="info-left">
+            <text class="info-label">脊柱轮廓</text>
+            <text class="info-hint">背部形态对称性评估</text>
+          </view>
+          <text class="info-value {{result.spineContour.includes('异常') || result.spineContour.includes('侧弯') ? 'warning' : 'safe'}}">{{result.spineContour}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="assessment-section" wx:if="{{success && result && assessmentList.length > 0}}">
+      <text class="section-title">核心基础判断</text>
+      <view class="assessment-cards">
+        <view class="assessment-card {{item.status}}" wx:for="{{assessmentList}}" wx:key="key">
+          <view class="assessment-header">
+            <view class="assessment-icon {{item.status}}">
+              <svg wx:if="{{item.status === 'normal'}}" viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg wx:else viewBox="0 0 24 24" fill="none">
+                <path d="M12 9v4M12 17h.01" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="9" stroke="#DC2626" stroke-width="2"/>
+              </svg>
+            </view>
+            <text class="assessment-title">{{item.title}}</text>
+          </view>
+          <text class="assessment-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="advice-section" wx:if="{{success && result && result.recommendations}}">
+      <text class="section-title">改善建议</text>
+      <view class="advice-card">
+        <view class="advice-item" wx:for="{{result.recommendations}}" wx:key="index">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="warning-card">
+      <view class="warning-icon-wrapper">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#D97706" stroke-width="1.8"/>
+          <path d="M12 8v4M12 16h.01" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </view>
+      <text class="warning-text">如持续不适或发现体态明显异常，建议前往正规医院骨科或脊柱外科就诊，由专业医生进行详细检查。</text>
+    </view>
+
+    <text class="disclaimer">本结果仅为辅助筛查参考，不构成医疗诊断</text>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+<view class="container">
+  <view class="header-section">
+    <view class="logo-wrapper">
+      <view class="logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4C12 4 8 10 8 14C8 16.2 9.8 18 12 18C14.2 18 16 16.2 16 14C16 10 12 4 12 4Z" stroke="white" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="14" r="1.5" fill="white"/>
+          <path d="M12 3L12 4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 18L12 21" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </view>
+    </view>
+    <text class="app-title">脊安 AI 筛查</text>
+    <text class="app-subtitle">AI驱动的脊柱侧弯智能筛查助手</text>
+  </view>
+
+  <view class="action-cards">
+    <view class="action-card photo-card" bindtap="goToPhotoUpload">
+      <view class="card-bg-circle"></view>
+      <view class="card-content">
+        <view class="card-icon photo-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#0D9488" stroke-width="1.8" fill="none"/>
+            <circle cx="12" cy="12.5" r="3" stroke="#0D9488" stroke-width="1.8" fill="none"/>
+            <circle cx="9" cy="9.5" r="0.8" fill="#0D9488"/>
+          </svg>
+        </view>
+        <view class="card-info">
+          <text class="card-title">后背照片检测</text>
+          <text class="card-desc">拍摄或上传后背照片，快速筛查脊柱侧弯风险</text>
+          <view class="primary-btn card-btn">开始检测</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="action-card xray-card" bindtap="goToXrayUpload">
+      <view class="card-bg-circle-xray"></view>
+      <view class="card-content">
+        <view class="card-icon xray-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="2" width="16" height="20" rx="3" stroke="#4F46E5" stroke-width="1.8" fill="none"/>
+            <path d="M7 7h10M7 11h8M7 15h6" stroke="#4F46E5" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </view>
+        <view class="card-info">
+          <text class="card-title">专业X光片分析</text>
+          <text class="card-desc">上传脊柱X光片，精准测量Cobb角度，输出专业报告</text>
+          <view class="primary-btn card-btn">开始分析</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-links">
+    <view class="quick-link-item" bindtap="goToHistory">
+      <view class="link-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#475569" stroke-width="1.8"/>
+          <path d="M12 7v5l3 3" stroke="#475569" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </view>
+      <text class="link-text">检测历史</text>
+      <view class="link-badge">3</view>
+      <view class="link-arrow">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="#C0C8D0" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </view>
+    </view>
+    <view class="quick-link-item" bindtap="goToKnowledge">
+      <view class="link-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#475569" stroke-width="1.8"/>
+        </svg>
+      </view>
+      <text class="link-text">科普知识</text>
+      <view class="link-arrow">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="#C0C8D0" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">本工具仅为辅助筛查，不构成医疗诊断</text>
+  </view>
+</view>

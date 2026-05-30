@@ -1,0 +1,148 @@
+<view class="container">
+  <view class="page-header">
+    <text class="header-title">X光片分析报告</text>
+    <view class="header-right">
+      <text class="report-date">{{timestamp}}</text>
+      <view class="share-btn">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="18" cy="5" r="3" stroke="#475569" stroke-width="1.8"/>
+          <path d="M11 21H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2v3" stroke="#475569" stroke-width="1.8"/>
+        </svg>
+      </view>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="result-card" wx:if="{{success && result}}">
+      <view class="card-accent"></view>
+      <view class="risk-ring">
+        <view class="ring-bg"></view>
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#F1F5F9" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="{{riskColor}}" stroke-width="10" stroke-dasharray="{{result.riskLevel === 'low' ? '88 220' : result.riskLevel === 'medium' ? '110 220' : '154 220'}}" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+        </svg>
+        <view class="ring-center">
+          <text class="risk-level">{{result.riskLevel === 'low' ? '低' : result.riskLevel === 'medium' ? '中' : '高'}}</text>
+          <text class="risk-label">风险</text>
+        </view>
+      </view>
+      <text class="result-title">分析结果：{{riskText}}</text>
+      <text class="result-desc">{{result.summary || '分析完成'}}</text>
+    </view>
+
+    <view class="result-card" wx:if="{{!success}}">
+      <view class="card-accent error"></view>
+      <view class="risk-ring error">
+        <view class="ring-bg error"></view>
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#EF4444" stroke-width="10" stroke-dasharray="220 220" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+        </svg>
+        <view class="ring-center">
+          <text class="risk-level">!</text>
+          <text class="risk-label">错误</text>
+        </view>
+      </view>
+      <text class="result-title">分析失败</text>
+      <text class="result-desc">{{error || '未知错误'}}</text>
+    </view>
+
+    <view class="analysis-section" wx:if="{{success && result}}">
+      <text class="section-title">X光片图像</text>
+      <view class="annotation-image">
+        <image src="{{imagePath}}" mode="aspectFit" wx:if="{{imagePath}}"/>
+        <view wx:else class="image-placeholder">
+          <text>暂无图片</text>
+        </view>
+      </view>
+      <text class="image-hint">脊柱X光片分析图</text>
+    </view>
+
+    <view class="detail-section" wx:if="{{success && result}}">
+      <text class="section-title">分析详情</text>
+      <view class="info-cards">
+        <view class="info-card" wx:if="{{result.scoliosisType}}">
+          <view class="info-left">
+            <text class="info-label">侧弯类型</text>
+            <text class="info-hint">脊柱侧弯分类</text>
+          </view>
+          <text class="info-value warning">{{result.scoliosisType}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.cobbAngle !== undefined}}">
+          <view class="info-left">
+            <text class="info-label">Cobb 角度</text>
+            <text class="info-hint">侧弯严重程度</text>
+          </view>
+          <text class="info-value {{result.cobbAngle >= 10 ? (result.cobbAngle >= 25 ? 'danger' : 'warning') : 'safe'}}">{{result.cobbAngle}}°</text>
+        </view>
+        <view class="info-card" wx:if="{{result.curveLocation}}">
+          <view class="info-left">
+            <text class="info-label">弯曲位置</text>
+            <text class="info-hint">侧弯发生的脊柱区域</text>
+          </view>
+          <text class="info-value safe">{{result.curveLocation}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.curveDirection}}">
+          <view class="info-left">
+            <text class="info-label">弯曲方向</text>
+            <text class="info-hint">侧弯的凸出方向</text>
+          </view>
+          <text class="info-value safe">{{result.curveDirection}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.curveType}}">
+          <view class="info-left">
+            <text class="info-label">弯曲类型</text>
+            <text class="info-hint">C型/S型/其他</text>
+          </view>
+          <text class="info-value safe">{{result.curveType}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.affectedVertebrae}}">
+          <view class="info-left">
+            <text class="info-label">受影响椎体</text>
+            <text class="info-hint">具体椎体节段</text>
+          </view>
+          <text class="info-value warning">{{result.affectedVertebrae}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.vertebralRotation}}">
+          <view class="info-left">
+            <text class="info-label">椎体旋转</text>
+            <text class="info-hint">旋转程度</text>
+          </view>
+          <text class="info-value {{result.vertebralRotation === '无' ? 'safe' : 'warning'}}">{{result.vertebralRotation}}</text>
+        </view>
+        <view class="info-card" wx:if="{{result.postSurgical !== undefined}}">
+          <view class="info-left">
+            <text class="info-label">术后状态</text>
+            <text class="info-hint">是否有手术史</text>
+          </view>
+          <text class="info-value {{result.postSurgical ? 'danger' : 'safe'}}">{{result.postSurgical ? '是' : '否'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="advice-section" wx:if="{{success && result && result.recommendations}}">
+      <text class="section-title">专业建议</text>
+      <view class="advice-card">
+        <view class="advice-item" wx:for="{{result.recommendations}}" wx:key="index">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="warning-card">
+      <view class="warning-icon-wrapper">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#D97706" stroke-width="1.8"/>
+          <path d="M12 8v4M12 16h.01" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </view>
+      <text class="warning-text">X光片分析仅供参考，请结合临床症状，由专业医生进行最终诊断。如有疑虑，请及时就医。</text>
+    </view>
+
+    <text class="disclaimer">本结果仅为辅助分析参考，不构成医疗诊断</text>
+  </view>
+</view>

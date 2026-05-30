@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="content">
+    <view class="logo-section">
+      <view class="logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4C12 4 8 10 8 14C8 16.2 9.8 18 12 18C14.2 18 16 16.2 16 14C16 10 12 4 12 4Z" stroke="white" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="14" r="1.5" fill="white"/>
+        </svg>
+      </view>
+      <text class="app-name">脊安 AI 筛查</text>
+      <text class="app-version">v1.0.0</text>
+    </view>
+
+    <view class="feature-list">
+      <view class="feature-item" wx:for="{{features}}" wx:key="title">
+        <view class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#0D9488" stroke-width="1.8"/>
+            <path d="M9 12l2 2 4-4" stroke="#0D9488" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </view>
+        <view class="feature-content">
+          <text class="feature-title">{{item.title}}</text>
+          <text class="feature-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="warning-card">
+      <text class="warning-title">免责声明</text>
+      <text class="warning-text">本工具仅为脊柱侧弯辅助筛查工具，分析结果仅供参考，不替代专业医生诊断。如发现异常或有任何不适，请及时前往正规医院骨科/脊柱外科就诊，由专业医生进行确诊和治疗。</text>
+    </view>
+
+    <view class="privacy-card">
+      <text class="privacy-title">隐私承诺</text>
+      <text class="privacy-text">本工具不收集、不存储您的任何个人信息及检测数据。所有数据仅保存在您当前使用的设备中，卸载小程序后数据自动清除。</text>
+    </view>
+
+    <view class="links">
+      <text class="link-item">联系我们</text>
+      <text class="link-item">隐私政策</text>
+      <text class="link-item">用户协议</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="loading-content">
+    <view class="scan-container">
+      <view class="scan-bg"></view>
+      <view class="scan-box">
+        <svg viewBox="0 0 40 180" class="spine-svg">
+          <path d="M20 5C28 30,25 50,18 70C14 85,22 95,19 110C16 130,24 145,20 175" stroke="#94A3B8" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <rect x="14" y="11" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="31" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="51" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="71" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="91" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="111" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="131" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+          <rect x="14" y="151" width="12" height="8" rx="3" fill="#E2E8F0" opacity="0.6"/>
+        </svg>
+        <view class="scan-line"></view>
+      </view>
+      <view class="pulse-ring"></view>
+    </view>
+
+    <text class="loading-title">AI 分析中</text>
+    <text class="loading-message">{{currentMessage}}</text>
+
+    <view class="loading-dots">
+      <view class="dot dot-1"></view>
+      <view class="dot dot-2"></view>
+      <view class="dot dot-3"></view>
+    </view>
+
+    <text class="loading-time">{{isPhoto ? '预计 5 秒内完成' : '预计 10 秒内完成'}}</text>
+
+    <view class="privacy-card">
+      <text class="privacy-text">分析过程完全在本地进行</text>
+      <text class="privacy-text">您的照片不会上传至云端</text>
+    </view>
+  </view>
+</view>

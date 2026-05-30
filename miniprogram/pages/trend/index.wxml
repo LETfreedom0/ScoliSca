@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="page-header">
+    <text class="header-title">检测趋势对比</text>
+  </view>
+
+  <view class="content">
+    <view class="tab-bar">
+      <view class="tab {{activeTab === 'photo' ? 'active' : ''}}" bindtap="switchTab('photo')">后背照片</view>
+      <view class="tab {{activeTab === 'xray' ? 'active' : ''}}" bindtap="switchTab('xray')">X光片</view>
+    </view>
+
+    <view class="chart-card">
+      <text class="chart-title">{{activeTab === 'photo' ? '风险等级趋势' : 'Cobb角度变化'}}</text>
+      <view class="bar-chart">
+        <view class="bar-item">
+          <view class="bar safe" style="height: 70rpx;"></view>
+          <text class="bar-label">检测1</text>
+        </view>
+        <view class="bar-item">
+          <view class="bar safe" style="height: 80rpx;"></view>
+          <text class="bar-label">检测2</text>
+        </view>
+        <view class="bar-item">
+          <view class="bar warning" style="height: 110rpx;"></view>
+          <text class="bar-label">检测3</text>
+        </view>
+      </view>
+      <text class="chart-hint">{{activeTab === 'photo' ? '风险等级' : 'Cobb角度 (°)'}}</text>
+    </view>
+
+    <view class="table-card">
+      <text class="table-title">数据对比</text>
+      <view class="table">
+        <view class="table-header">
+          <text>日期</text>
+          <text>类型</text>
+          <text>结果</text>
+        </view>
+        <view class="table-row">
+          <text>2024-03-15</text>
+          <view class="type-badge blue">X光片</view>
+          <text class="result warning">18°</text>
+        </view>
+        <view class="table-row">
+          <text>2024-02-20</text>
+          <view class="type-badge teal">后背照片</view>
+          <text class="result safe">低风险</text>
+        </view>
+        <view class="table-row">
+          <text>2024-01-10</text>
+          <view class="type-badge teal">后背照片</view>
+          <text class="result safe">低风险</text>
+        </view>
+      </view>
+    </view>
+
+    <text class="summary">近3次检测结果显示，脊柱侧弯风险呈稳定趋势</text>
+  </view>
+</view>

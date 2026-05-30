@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="page-header">
+    <text class="header-title">脊柱健康科普</text>
+  </view>
+
+  <view class="content">
+    <view class="knowledge-grid">
+      <view class="knowledge-card" wx:for="{{topics}}" wx:key="title">
+        <view class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#0D9488" stroke-width="1.8"/>
+            <path d="M12 8v4M12 16h.01" stroke="#0D9488" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </view>
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+      </view>
+    </view>
+
+    <text class="source">内容来源：中华医学会骨科学分会</text>
+  </view>
+</view>

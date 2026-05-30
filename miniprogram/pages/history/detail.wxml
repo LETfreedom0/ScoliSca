@@ -1,0 +1,243 @@
+<view class="container">
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M15 6l-6 6 6 6" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </view>
+    <text class="header-title">历史记录</text>
+    <view class="type-badge">
+      <text>{{recordType === 'photo' ? '后背照片' : 'X光片'}}</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="result-card" wx:if="{{recordType === 'xray'}}">
+      <view class="card-accent"></view>
+      <text class="cobb-value">18°</text>
+      <text class="cobb-label">Cobb 角度</text>
+      <view class="result-badge">轻度侧弯</view>
+    </view>
+
+    <view class="result-card" wx:else>
+      <view class="card-accent"></view>
+      <view class="risk-ring">
+        <view class="ring-bg"></view>
+        <svg viewBox="0 0 120 120" class="ring-svg">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#F1F5F9" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#059669" stroke-width="10" stroke-dasharray="88 220" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+        </svg>
+        <view class="ring-center">
+          <text class="risk-level">低</text>
+          <text class="risk-label">风险</text>
+        </view>
+      </view>
+      <text class="result-title">筛查结果：低风险</text>
+      <text class="result-desc">脊柱轮廓基本对称，未发现明显侧弯特征</text>
+    </view>
+
+    <view class="severity-card" wx:if="{{recordType === 'xray'}}">
+      <text class="severity-title">严重程度</text>
+      <view class="severity-bars">
+        <view class="severity-item normal">
+          <view class="bar"></view>
+          <text class="label">正常</text>
+          <text class="range">0-10°</text>
+        </view>
+        <view class="severity-item active mild">
+          <view class="bar"></view>
+          <text class="label">轻度</text>
+          <text class="range">10-25°</text>
+        </view>
+        <view class="severity-item moderate">
+          <view class="bar"></view>
+          <text class="label">中度</text>
+          <text class="range">25-40°</text>
+        </view>
+        <view class="severity-item severe">
+          <view class="bar"></view>
+          <text class="label">重度</text>
+          <text class="range">40-60°</text>
+        </view>
+        <view class="severity-item extreme">
+          <view class="bar"></view>
+          <text class="label">极重度</text>
+          <text class="range">60°+</text>
+        </view>
+      </view>
+      <view class="severity-scale">
+        <view class="scale-bar">
+          <view class="scale-segment normal"></view>
+          <view class="scale-segment mild"></view>
+          <view class="scale-segment moderate"></view>
+          <view class="scale-segment severe"></view>
+          <view class="scale-segment extreme"></view>
+        </view>
+        <view class="scale-marker"></view>
+        <view class="scale-labels">
+          <text>0</text>
+          <text>10</text>
+          <text>25</text>
+          <text>40</text>
+          <text>60</text>
+          <text></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="analysis-section" wx:if="{{recordType === 'photo'}}">
+      <text class="section-title">AI 标注图</text>
+      <view class="annotation-image">
+        <svg viewBox="0 0 180 160" class="annotation-svg">
+          <path d="M60,10C40,40 35,80 38,110C40,140 55,155 90,155C125,155 140,140 142,110C145,80 140,40 120,10" fill="none" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="90" y1="20" x2="91" y2="145" stroke="#0D9488" stroke-width="2" stroke-dasharray="6 3"/>
+          <line x1="55" y1="38" x2="125" y2="42" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="55" cy="38" r="3" fill="#D97706"/>
+          <circle cx="125" cy="42" r="3" fill="#D97706"/>
+          <line x1="65" y1="130" x2="115" y2="128" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="65" cy="130" r="3" fill="#059669"/>
+          <circle cx="115" cy="128" r="3" fill="#059669"/>
+          <text x="135" y="42" fontSize="8" fill="#D97706" fontWeight="600">肩部倾斜 2°</text>
+          <text x="10" y="130" fontSize="8" fill="#059669" fontWeight="600">骨盆倾斜 1°</text>
+        </svg>
+      </view>
+      <text class="image-hint">点击可缩放查看标注细节</text>
+    </view>
+
+    <view class="detail-section">
+      <text class="section-title">{{recordType === 'xray' ? '分析详情' : '分析详情'}}</text>
+      <view class="info-cards">
+        <view class="info-card" wx:if="{{recordType === 'xray'}}">
+          <view class="info-left">
+            <text class="info-label">侧弯类型</text>
+            <text class="info-hint">根据弯曲形态分类</text>
+          </view>
+          <text class="info-value warning">C型（胸椎段）</text>
+        </view>
+        <view class="info-card" wx:if="{{recordType === 'xray'}}">
+          <view class="info-left">
+            <text class="info-label">Cobb角度</text>
+            <text class="info-hint">脊柱弯曲角度</text>
+          </view>
+          <text class="info-value">18°</text>
+        </view>
+        <view class="info-card" wx:if="{{recordType === 'xray'}}">
+          <view class="info-left">
+            <text class="info-label">顶椎位置</text>
+            <text class="info-hint">弯曲顶点位置</text>
+          </view>
+          <text class="info-value">T8-T9</text>
+        </view>
+        <view class="info-card" wx:if="{{recordType === 'xray'}}">
+          <view class="info-left">
+            <text class="info-label">Risser征</text>
+            <text class="info-hint">骨骼成熟度指标</text>
+          </view>
+          <text class="info-value">3级</text>
+        </view>
+
+        <view class="info-card" wx:if="{{recordType === 'photo'}}">
+          <view class="info-left">
+            <text class="info-label">脊柱轮廓</text>
+            <text class="info-hint">背部形态对称性评估</text>
+          </view>
+          <text class="info-value safe">基本对称</text>
+        </view>
+        <view class="info-card" wx:if="{{recordType === 'photo'}}">
+          <view class="info-left">
+            <text class="info-label">肩部平衡</text>
+            <text class="info-hint">双肩高度差异</text>
+          </view>
+          <text class="info-value warning">轻微偏差 (2°)</text>
+        </view>
+        <view class="info-card" wx:if="{{recordType === 'photo'}}">
+          <view class="info-left">
+            <text class="info-label">骨盆水平</text>
+            <text class="info-hint">骨盆两侧高度</text>
+          </view>
+          <text class="info-value safe">正常</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="advice-section">
+      <text class="section-title">{{recordType === 'xray' ? '专业建议' : '改善建议'}}</text>
+      <view class="advice-card">
+        <view class="advice-item" wx:if="{{recordType === 'xray'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">建议进行康复训练，加强核心肌群锻炼</text>
+        </view>
+        <view class="advice-item" wx:if="{{recordType === 'xray'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">推荐Schroth训练法改善脊柱排列</text>
+        </view>
+        <view class="advice-item" wx:if="{{recordType === 'xray'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">每6个月复查X光片，密切监测侧弯进展</text>
+        </view>
+        <view class="advice-item" wx:if="{{recordType === 'xray'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">避免长期不良姿势和单侧负重运动</text>
+        </view>
+
+        <view class="advice-item" wx:if="{{recordType === 'photo'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">注意保持正确坐姿，避免长期单侧负重</text>
+        </view>
+        <view class="advice-item" wx:if="{{recordType === 'photo'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">建议定期复查，每3个月进行一次自检</text>
+        </view>
+        <view class="advice-item" wx:if="{{recordType === 'photo'}}">
+          <view class="advice-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M9 12l2 2 4-4" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </view>
+          <text class="advice-text">适当进行核心肌群锻炼，增强背部力量</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="warning-card">
+      <view class="warning-icon-wrapper">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#D97706" stroke-width="1.8"/>
+          <path d="M12 8v4M12 16h.01" stroke="#D97706" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </view>
+      <text class="warning-text">{{recordType === 'xray' ? '建议咨询脊柱外科医生，制定个性化治疗方案。本报告仅供专业参考，需结合临床体征综合评估。' : '如持续不适或发现体态明显异常，建议前往正规医院骨科或脊柱外科就诊，由专业医生进行详细检查。'}}</text>
+    </view>
+
+    <view class="action-buttons">
+      <view class="danger-btn btn-full" bindtap="deleteRecord">删除此记录</view>
+      <view class="primary-btn btn-full" bindtap="reTest">重新检测</view>
+    </view>
+
+    <text class="disclaimer">本结果仅为辅助筛查参考，不构成医疗诊断</text>
+  </view>
+</view>
