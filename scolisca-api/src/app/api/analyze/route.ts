@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { analyzeImage, ImageType } from '@/lib/ai';
 import { getPrompts } from '@/lib/config';
 
+export const dynamic = 'force-dynamic';
+
 function formatTimestamp(): string {
   const now = new Date();
   return now.toISOString().replace('T', ' ').substring(0, 19);

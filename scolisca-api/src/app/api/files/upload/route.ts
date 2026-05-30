@@ -3,6 +3,8 @@ import { uploadFile, generateKey } from '@/lib/r2';
 import fs from 'fs';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 const LOCAL_UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
 
 function ensureUploadDir() {
