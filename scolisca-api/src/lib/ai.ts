@@ -35,6 +35,7 @@ export interface AnalysisResult {
   postSurgicalDetails?: string;
   detailedAssessment?: DetailedAssessment;
   abnormalSigns?: string[];
+  scoliosisType?: string;
 }
 
 export interface ValidationResult {

@@ -22,7 +22,8 @@ export async function GET(request: Request) {
       );
     }
 
-    const buffer = await response.Body.transformToByteArray();
+    const byteArray = await response.Body.transformToByteArray();
+    const buffer = Buffer.from(byteArray);
     const contentType = response.ContentType || 'application/octet-stream';
 
     return new NextResponse(buffer, {
